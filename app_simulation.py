@@ -311,7 +311,7 @@ def simulation_future_sabr(
     for i in range(N):
         tau = T_maturity_path[i]
         if tau <= 0:
-            iv_path[i] = 0.0
+            iv_path[i] =  iv_path[i-1]
         else:
             iv_path[i] = sabr_implied_vol(
                 F0=F_path[i],
@@ -517,7 +517,7 @@ def prepare_dataframe(expiry: str, sim_seed: int, vol_mode: str,
 
 st.set_page_config(page_title="Analyse Option Futur", layout="wide")
 
-st.title("Analyse d'une option sur futur – Sep26 / Jul26")
+st.title("Analyse PnL Option – Sep26 / Jul26")
 
 # Session state pour contrôler la simulation
 if "sim_seed" not in st.session_state:
@@ -560,7 +560,7 @@ st.markdown("---")
 # ===============================
 #   FIGURE 1 : 3D Price / Underlying / IV
 # ===============================
-st.subheader("Price / Underlying / IV dans le temps (3 axes)")
+st.subheader("Chart of price option, future & implied volatility")
 
 fig_axes = go.Figure()
 
@@ -658,7 +658,7 @@ st.markdown("---")
 #   FIGURE 2 : PnL & Greeks dans le temps
 # ===============================
 
-st.subheader("PnL & Greeks dans le temps")
+st.subheader("PnL of greeks")
 
 # Choix des séries à afficher
 pnl_cols = ["PnL Delta", "PnL Gamma", "PnL Vega", "PnL Theta"]

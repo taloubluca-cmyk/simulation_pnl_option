@@ -1,7 +1,6 @@
 import pandas as pd 
 import numpy as np
 from scipy.stats import norm
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy.random as nrd
@@ -696,4 +695,5 @@ st.plotly_chart(fig_pnl, use_container_width=True)
 # ===============================
 
 with st.expander("Voir les dernières lignes du dataframe (debug / contrôle)"):
+
     st.dataframe(df.tail(20))
